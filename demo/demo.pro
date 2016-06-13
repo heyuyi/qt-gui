@@ -25,7 +25,8 @@ SOURCES += main.cpp \
     process/processdialog.cpp \
     maindialog.cpp \
     qextserialport/posix_qextserialport.cpp \
-    qextserialport/qextserialbase.cpp
+    qextserialport/qextserialbase.cpp \
+    process/communication.cpp
 
 HEADERS  += \
     base/basedialog.h \
@@ -40,7 +41,8 @@ HEADERS  += \
     process/processdialog.h \
     maindialog.h \
     qextserialport/posix_qextserialport.h \
-    qextserialport/qextserialbase.h
+    qextserialport/qextserialbase.h \
+    process/communication.h
 
 FORMS    += \
     maindialog.ui \
@@ -53,3 +55,6 @@ FORMS    += \
 
 RESOURCES += \
     ../resource/resrc.qrc
+
+OTHER_FILES += \
+    ../readme.txt

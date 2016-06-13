@@ -89,8 +89,8 @@ void NumberDialog::on_button_back_clicked()
 void NumberDialog::on_confirm_clicked()
 {
     bool flag;
-    int x = ui->text->text().toInt(&flag, 10);
-    if(flag) {
+    ushort x = ui->text->text().toUShort(&flag, 10);
+    if(flag && x <= 255) {
         value = x;
         emit outValue();
     } else {

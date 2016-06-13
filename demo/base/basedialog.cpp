@@ -9,7 +9,7 @@ BaseDialog::BaseDialog(QWidget *parent) :
     ui(new Ui::BaseDialog)
 {
     ui->setupUi(this);
-    setFixedSize(dialogWidth, dialogHeight);
+    setFixedSize(SystemBase::dialogWidth, SystemBase::dialogHeight);
 
     ui->dateLabel->setStyleSheet("color: white");
     ui->dateLabel->setText(QDate::currentDate().toString("yyyy / MM / dd"));

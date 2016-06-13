@@ -49,7 +49,7 @@ private slots:
 private:
     Ui::NumberDialog *ui;
     QString sbuf;
-    int value;
+    unsigned char value;
 };
 
 #endif // NUMBERDIALOG_H

@@ -60,8 +60,8 @@ private:
     ParamData *param;
     QStandardItemModel *treeModel;
     QString name;
-    int treeItem;
-    int editItem;
+    short treeItem;
+    short editItem;
     bool isChanged;
 };
 

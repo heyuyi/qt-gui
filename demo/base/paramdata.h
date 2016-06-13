@@ -6,8 +6,8 @@
 
 struct SampleParam
 {
-    int speed;
-    int delay;
+    unsigned char speed;
+    unsigned char delay;
 
     SampleParam() : speed(0), delay(0)
     {
@@ -16,14 +16,14 @@ struct SampleParam
 
 struct ReagentParam
 {
-    bool enable;
-    int quantity;
-    int speed;
-    int delay1;
-    int pump;
-    int delay2;
+    unsigned char enable;
+    unsigned char quantity;
+    unsigned char speed;
+    unsigned char delay1;
+    unsigned char pump;
+    unsigned char delay2;
 
-    ReagentParam() : enable(false), quantity(0),
+    ReagentParam() : enable(0), quantity(0),
         speed(0), delay1(0), pump(0), delay2(0)
     {
     }
@@ -32,8 +32,8 @@ struct ReagentParam
 class ParamData
 {
 public:
-    ParamData(int num);
-    ParamData(int num, QFile &file);
+    ParamData(const int num);
+    ParamData(const int num, QFile &file);
     ~ParamData();
 
     void writeParam(const int num, QFile &file);

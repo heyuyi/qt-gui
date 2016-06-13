@@ -9,7 +9,7 @@ namespace Ui {
 class BaseDialog;
 }
 
-class BaseDialog : public QDialog, public SystemBase
+class BaseDialog : public QDialog
 {
     Q_OBJECT
 

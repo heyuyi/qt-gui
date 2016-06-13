@@ -26,7 +26,6 @@ private slots:
 private:
     Ui::ProcessDialog *ui;
     Posix_QextSerialPort *port;
-    ParamData *param;
     QPixmap icon1, icon2;
 };
 

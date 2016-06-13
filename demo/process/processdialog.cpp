@@ -1,12 +1,13 @@
 #include "processdialog.h"
 #include "ui_processdialog.h"
+#include "communication.h"
 
 #include <QMessageBox>
 
 ProcessDialog::ProcessDialog(QWidget *parent) :
     BaseDialog(parent),
     ui(new Ui::ProcessDialog),
-    port(new Posix_QextSerialPort(serialPort1)), param(NULL),
+    port(new Posix_QextSerialPort(SystemBase::serialPort1)),
     icon1(QString::fromUtf8(":/process/stepicon1.png")),
     icon2(QString::fromUtf8(":/process/stepicon2.png"))
 {
@@ -28,20 +29,23 @@ ProcessDialog::ProcessDialog(QWidget *parent) :
 ProcessDialog::~ProcessDialog()
 {
     delete port;
-    if(param != NULL)
-        delete param;
     delete ui;
 }
 
 bool ProcessDialog::init(void)
 {
-    QFile file(path + QString("/") + postfix);
+    if(!port->open(QIODevice::ReadWrite)) {
+        QMessageBox::warning((QWidget*)(this->parent()), "提示", "无法打开串口!", QMessageBox::Yes);
+        return false;
+    }
+    ParamData *param;
+    QFile file(SystemBase::path + QString("/") + SystemBase::postfix);
     if(file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
         QString str = in.readLine();
-        QFile f(path + str + QString(".") + postfix);
+        QFile f(SystemBase::path + str + QString(".") + SystemBase::postfix);
         if(f.exists()) {
-            param = new ParamData(reagentNum, f);
+            param = new ParamData(SystemBase::reagentNum, f);
             goto label;
         }
     }
@@ -49,13 +53,13 @@ bool ProcessDialog::init(void)
     return false;
 
 label:
-    if(!port->open(QIODevice::ReadWrite)) {
-        QMessageBox::warning((QWidget*)(this->parent()), "提示", "无法打开串口!", QMessageBox::Yes);
-        return false;
-    }
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(readSerialPortSLOT()));
     timer->start(100);
+
+    Communication::sendData(port, 0x00, param);
+
+    delete param;
     return true;
 }
 

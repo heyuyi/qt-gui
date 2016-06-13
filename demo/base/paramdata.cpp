@@ -2,12 +2,12 @@
 
 #include <QTextStream>
 
-ParamData::ParamData(int num) :
+ParamData::ParamData(const int num) :
     pS(new SampleParam), pR(new ReagentParam[num])
 {
 }
 
-ParamData::ParamData(int num, QFile &file) :
+ParamData::ParamData(const int num, QFile &file) :
     pS(new SampleParam), pR(new ReagentParam[num])
 {
     readParam(num, file);
@@ -40,9 +40,9 @@ void ParamData::readParam(const int num, QFile &file)
         if(!str.isEmpty()) {
             QStringList strlist = str.split(",");
             if(strlist.size() >= 1)
-                pS->speed = strlist.at(0).toInt(&flag, 10);
+                pS->speed = strlist.at(0).toUShort(&flag, 10);
             if(strlist.size() >= 2)
-                pS->delay = strlist.at(1).toInt(&flag, 10);
+                pS->delay = strlist.at(1).toUShort(&flag, 10);
         }
         for(int i = 0; i < num; ++i) {
             str = in.readLine();
@@ -50,17 +50,17 @@ void ParamData::readParam(const int num, QFile &file)
                 break;
             QStringList strlist = str.split(",");
             if(strlist.size() >= 1)
-                pR[i].enable = strlist.at(0).toInt(&flag, 10);
+                pR[i].enable = strlist.at(0).toUShort(&flag, 10);
             if(strlist.size() >= 2)
-                pR[i].quantity = strlist.at(1).toInt(&flag, 10);
+                pR[i].quantity = strlist.at(1).toUShort(&flag, 10);
             if(strlist.size() >= 3)
-                pR[i].speed = strlist.at(2).toInt(&flag, 10);
+                pR[i].speed = strlist.at(2).toUShort(&flag, 10);
             if(strlist.size() >= 4)
-                pR[i].delay1 = strlist.at(3).toInt(&flag, 10);
+                pR[i].delay1 = strlist.at(3).toUShort(&flag, 10);
             if(strlist.size() >= 5)
-                pR[i].pump = strlist.at(4).toInt(&flag, 10);
+                pR[i].pump = strlist.at(4).toUShort(&flag, 10);
             if(strlist.size() >= 6)
-                pR[i].delay2 = strlist.at(5).toInt(&flag, 10);
+                pR[i].delay2 = strlist.at(5).toUShort(&flag, 10);
         }
         file.close();
     }

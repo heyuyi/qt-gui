@@ -29,24 +29,24 @@ ParamDialog::ParamDialog(QWidget *parent) :
     font.setPointSize(12);
     item1->setFont(font);
     item2->setFont(font);
-    for(int i = 0; i < reagentNum; ++i) {
+    for(int i = 0; i < SystemBase::reagentNum; ++i) {
         QStandardItem *item = new QStandardItem(icon2, QStringLiteral("试剂%1").arg(i+1));
         item2->appendRow(item);
     }
     ui->paramView->setModel(treeModel);
     ui->paramView->expandAll();
 
-    QDir dir(path);
+    QDir dir(SystemBase::path);
     if(!dir.exists())
-        dir.mkdir(path);
-    QFile file(path + QString("/") + postfix);
+        dir.mkdir(SystemBase::path);
+    QFile file(SystemBase::path + QString("/") + SystemBase::postfix);
     if(file.exists() && file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
         QString str = in.readLine();
-        QFile f(path + str + QString(".") + postfix);
+        QFile f(SystemBase::path + str + QString(".") + SystemBase::postfix);
         if(f.exists()) {
             name = str;
-            param = new ParamData(reagentNum, f);
+            param = new ParamData(SystemBase::reagentNum, f);
             goto label;
         }
         file.close();
@@ -69,12 +69,12 @@ ParamDialog::~ParamDialog()
 void ParamDialog::saveCheck(void)
 {
     if(param != NULL && isChanged) {
-        QFile file(path + name + QString(".") + postfix);
+        QFile file(SystemBase::path + name + QString(".") + SystemBase::postfix);
         if(QMessageBox::warning(this, "提示", "当前配置已经更改，是否保存当前更改？", QMessageBox::Yes, QMessageBox::No)
                 == QMessageBox::Yes) {
-            param->writeParam(reagentNum, file);
+            param->writeParam(SystemBase::reagentNum, file);
         } else {
-            param->readParam(reagentNum, file);
+            param->readParam(SystemBase::reagentNum, file);
             displayUpdate();
         }
     }
@@ -126,7 +126,7 @@ void ParamDialog::displayUpdate(void)
 
 void ParamDialog::nDialogOutValueSLOT()
 {
-    int x = nDialog->getValue();
+    unsigned char x = nDialog->getValue();
     switch(editItem) {
     case 1:
         ui->pumpSpeedEdit->setText(QString::number(x));
@@ -184,7 +184,7 @@ void ParamDialog::on_newButton_clicked()
             delete param;
 
         name = kd.getText();
-        param = new ParamData(reagentNum);
+        param = new ParamData(SystemBase::reagentNum);
         treeModel->setHorizontalHeaderLabels(QStringList(name));
         displayUpdate();
         isChanged = true;
@@ -198,14 +198,14 @@ void ParamDialog::on_newButton_clicked()
 void ParamDialog::on_openButton_clicked()
 {
     saveCheck();
-    FileListDialog fd(this, path, QString(".") + postfix);
+    FileListDialog fd(this, SystemBase::path, QString(".") + SystemBase::postfix);
     if(fd.exec() == QDialog::Accepted) {
         name = fd.selectedFile();
-        QFile file(path + name + QString(".") + postfix);
+        QFile file(SystemBase::path + name + QString(".") + SystemBase::postfix);
         if(param) {
-            param->readParam(reagentNum, file);
+            param->readParam(SystemBase::reagentNum, file);
         } else {
-            param = new ParamData(reagentNum, file);
+            param = new ParamData(SystemBase::reagentNum, file);
         }
         treeModel->setHorizontalHeaderLabels(QStringList(name));
         displayUpdate();
@@ -219,8 +219,8 @@ void ParamDialog::on_openButton_clicked()
 void ParamDialog::on_saveButton_clicked()
 {
     if(param != NULL && isChanged) {
-        QFile file(path + name + QString(".") + postfix);
-        param->writeParam(reagentNum, file);
+        QFile file(SystemBase::path + name + QString(".") + SystemBase::postfix);
+        param->writeParam(SystemBase::reagentNum, file);
         isChanged = false;
     }
 }
@@ -230,8 +230,8 @@ void ParamDialog::on_saveAsButton_clicked()
     KeyboardDialog kd(this);
     if(kd.exec() == QDialog::Accepted) {
         name = kd.getText();
-        QFile file(path + name + QString(".") + postfix);
-        param->writeParam(reagentNum, file);
+        QFile file(SystemBase::path + name + QString(".") + SystemBase::postfix);
+        param->writeParam(SystemBase::reagentNum, file);
         treeModel->setHorizontalHeaderLabels(QStringList(name));
         displayUpdate();
         isChanged = false;
@@ -241,7 +241,7 @@ void ParamDialog::on_saveAsButton_clicked()
 void ParamDialog::on_confirmButton_clicked()
 {
     saveCheck();
-    QFile file(path + QString("/") + postfix);
+    QFile file(SystemBase::path + QString("/") + SystemBase::postfix);
     if(file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
         QTextStream out(&file);
         out << name << endl;
