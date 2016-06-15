@@ -1,15 +1,18 @@
 #ifndef COMMUNICATION_H
 #define COMMUNICATION_H
 
-#include "qextserialport/posix_qextserialport.h"
+#include <QThread>
 
-class Communication
+class Communication : public QThread
 {
+    Q_OBJECT
 public:
-    Communication();
+    explicit Communication(QObject *parent = 0);
 
-    static void sendData(Posix_QextSerialPort *port,
-                         unsigned char comm, void* data);
+signals:
+
+public slots:
+
 };
 
 #endif // COMMUNICATION_H
