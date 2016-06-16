@@ -1,7 +1,6 @@
 #ifndef PARAMDATA_H
 #define PARAMDATA_H
 
-#include <QtGlobal>
 #include <QFile>
 
 struct SampleParam

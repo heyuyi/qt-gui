@@ -28,8 +28,10 @@ void MainDialog::on_processImage_released()
     ui->processImage->setFrameShadow(QFrame::Sunken);
     ui->processLabel->setStyleSheet("color: green");
     ProcessDialog pProc(this);
-    if(pProc.exec() == QDialog::Accepted) {
+    if(pProc.init()) {
+        if(pProc.exec() == QDialog::Accepted) {
 
+        }
     }
     ui->processImage->setFrameShadow(QFrame::Raised);
     ui->processLabel->setStyleSheet("color: black");

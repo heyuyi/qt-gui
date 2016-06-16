@@ -92,6 +92,8 @@ private slots:
 
     void on_button_back_clicked();
 
+    void on_confirm_clicked();
+
 private:
     Ui::KeyboardDialog *ui;
 };

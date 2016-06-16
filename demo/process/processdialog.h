@@ -3,7 +3,7 @@
 
 #include "base/basedialog.h"
 #include "base/paramdata.h"
-#include "qextserialport/posix_qextserialport.h"
+#include "communication.h"
 
 namespace Ui {
 class ProcessDialog;
@@ -20,12 +20,11 @@ public:
     bool init(void);
 
 private slots:
-    void readSerialPortSLOT(void);
     void on_exitLabel_released();
 
 private:
     Ui::ProcessDialog *ui;
-    Posix_QextSerialPort *port;
+    Communication *comm;
     QPixmap icon1, icon2;
 };
 
