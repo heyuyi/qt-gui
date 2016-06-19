@@ -43,6 +43,7 @@ bool ProcessDialog::init(void)
         }
     }
     QMessageBox::warning((QWidget*)(this->parent()), "提示", "请先进行参数配置!", QMessageBox::Yes);
+    comm->stop();
     return false;
 
 label:

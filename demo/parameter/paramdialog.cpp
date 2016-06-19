@@ -30,7 +30,7 @@ ParamDialog::ParamDialog(QWidget *parent) :
     item1->setFont(font);
     item2->setFont(font);
     for(int i = 0; i < SystemBase::reagentNum; ++i) {
-        QStandardItem *item = new QStandardItem(icon2, QStringLiteral("试剂%1").arg(i+1));
+        QStandardItem *item = new QStandardItem(icon2, QString("试剂")+QString::number(i+1));
         item2->appendRow(item);
     }
     ui->paramView->setModel(treeModel);

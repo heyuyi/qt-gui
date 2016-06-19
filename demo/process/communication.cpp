@@ -71,10 +71,12 @@ void Communication::readSerialPortSLOT(void)
 //  char a[] = {0xff, 0x01, 0x02, 0xff, 0x01, 0x02, 0xff, 0x01, 0x02};
 //  array += a;
     QList<QByteArray> arrays = array.split(0xff);
-    for(int i = 1; i < (arrays.size()-1); ++i) {
-        if(arrays[i].size() < 2)
+    int n = arrays.size()-1;
+    for(int i = 1; i < n; ++i) {
+        int m = arrays[i].size();
+        if(m < 2)
             continue;
-        if((arrays[i][1]+2) != arrays[i].size())
+        if((arrays[i][1]+2) != m)
             continue;
 
     }

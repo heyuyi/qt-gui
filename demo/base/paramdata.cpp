@@ -1,6 +1,7 @@
 #include "paramdata.h"
 
 #include <QTextStream>
+#include <QStringList>
 
 ParamData::ParamData(const int num) :
     pS(new SampleParam), pR(new ReagentParam[num])
