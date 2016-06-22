@@ -49,7 +49,7 @@ void FileListDialog::on_confirmButton_clicked()
 {
     QList<QListWidgetItem*> list = ui->listWidget->selectedItems();
     if(list.isEmpty())
-        QMessageBox::warning(this, "提示", "还没有选择打开的文件!", QMessageBox::Yes);
+        QMessageBox::warning(this, QObject::tr("提示"), QObject::tr("还没有选择打开的文件!"), QMessageBox::Yes);
     else
         accept();
 }

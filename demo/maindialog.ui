@@ -31,9 +31,6 @@
    <property name="text">
     <string/>
    </property>
-   <property name="pixmap">
-    <pixmap resource="../resource/resrc.qrc">:/main/result.jpg</pixmap>
-   </property>
   </widget>
   <widget class="ImageLabel" name="paramImage">
    <property name="geometry">
@@ -52,9 +49,6 @@
    </property>
    <property name="text">
     <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="../resource/resrc.qrc">:/main/param.jpg</pixmap>
    </property>
   </widget>
   <widget class="ImageLabel" name="processImage">
@@ -75,22 +69,19 @@
    <property name="text">
     <string/>
    </property>
-   <property name="pixmap">
-    <pixmap resource="../resource/resrc.qrc">:/main/process.jpg</pixmap>
-   </property>
   </widget>
   <widget class="QLabel" name="resultLabel">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>120</x>
      <y>320</y>
-     <width>80</width>
-     <height>20</height>
+     <width>100</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="text">
@@ -100,15 +91,15 @@
   <widget class="QLabel" name="processLabel">
    <property name="geometry">
     <rect>
-     <x>360</x>
+     <x>350</x>
      <y>320</y>
-     <width>80</width>
-     <height>20</height>
+     <width>100</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="text">
@@ -118,15 +109,15 @@
   <widget class="QLabel" name="paramLabel">
    <property name="geometry">
     <rect>
-     <x>590</x>
+     <x>580</x>
      <y>320</y>
-     <width>80</width>
-     <height>20</height>
+     <width>100</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>15</pointsize>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="text">
@@ -144,8 +135,6 @@
    </slots>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../resource/resrc.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

@@ -214,7 +214,7 @@ void KeyboardDialog::on_confirm_clicked()
 {
     QString str = ui->text->text();
     if(str.isEmpty())
-        QMessageBox::warning(this, "提示", "文件名不能为空！", QMessageBox::Yes);
+        QMessageBox::warning(this, QObject::tr("提示"), QObject::tr("文件名不能为空！"), QMessageBox::Yes);
     else
         accept();
 }

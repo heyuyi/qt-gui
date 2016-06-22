@@ -10,6 +10,9 @@ MainDialog::MainDialog(QWidget *parent) :
     ui(new Ui::MainDialog)
 {
     ui->setupUi(this);
+    ui->resultImage->setPixmap(QPixmap(SystemBase::path + QString("/../resource/result.jpg")));
+    ui->processImage->setPixmap(QPixmap(SystemBase::path + QString("/../resource/process.jpg")));
+    ui->paramImage->setPixmap(QPixmap(SystemBase::path + QString("/../resource/param.jpg")));
 }
 
 MainDialog::~MainDialog()

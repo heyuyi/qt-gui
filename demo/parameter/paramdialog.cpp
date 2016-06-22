@@ -15,22 +15,22 @@ ParamDialog::ParamDialog(QWidget *parent) :
     name(), treeItem(0), editItem(0), isChanged(false)
 {
     ui->setupUi(this);
-    nDialog->move(parent->x()+560, parent->y()+130);
+    nDialog->move(parent->x()+570, parent->y()+130);
     connect(nDialog, SIGNAL(outValue()), this, SLOT(nDialogOutValueSLOT()));
 
     QIcon icon1(":/param/treeView1.png");
     QIcon icon2(":/param/treeView2.png");
     treeModel = new QStandardItemModel(ui->paramView);
-    QStandardItem *item1 = new QStandardItem(icon1, "样本过滤设置");
+    QStandardItem *item1 = new QStandardItem(icon1, QObject::tr("样本过滤设置"));
     treeModel->appendRow(item1);
-    QStandardItem *item2 = new QStandardItem(icon1, "试剂设置");
+    QStandardItem *item2 = new QStandardItem(icon1, QObject::tr("试剂设置"));
     treeModel->appendRow(item2);
     QFont font = item1->font();
     font.setPointSize(12);
     item1->setFont(font);
     item2->setFont(font);
     for(int i = 0; i < SystemBase::reagentNum; ++i) {
-        QStandardItem *item = new QStandardItem(icon2, QString("试剂")+QString::number(i+1));
+        QStandardItem *item = new QStandardItem(icon2, QObject::tr("试剂")+QString::number(i+1));
         item2->appendRow(item);
     }
     ui->paramView->setModel(treeModel);
@@ -70,7 +70,7 @@ void ParamDialog::saveCheck(void)
 {
     if(param != NULL && isChanged) {
         QFile file(SystemBase::path + name + QString(".") + SystemBase::postfix);
-        if(QMessageBox::warning(this, "提示", "当前配置已经更改，是否保存当前更改？", QMessageBox::Yes, QMessageBox::No)
+        if(QMessageBox::warning(this, QObject::tr("提示"), QObject::tr("当前配置已经更改，是否保存当前更改？"), QMessageBox::Yes, QMessageBox::No)
                 == QMessageBox::Yes) {
             param->writeParam(SystemBase::reagentNum, file);
         } else {
@@ -169,7 +169,7 @@ void ParamDialog::on_paramView_clicked(const QModelIndex &index)
     QModelIndex p = index.parent();
     if(p.isValid()) {
         treeItem = index.row()+1;
-    } else {
+    } else if(index.row() == 0) {
         treeItem = 0;
     }
     displayUpdate();

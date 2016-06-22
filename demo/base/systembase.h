@@ -13,7 +13,7 @@ public:
     static const short reagentNum = 7;
     static const QString path;
     static const QString postfix;
-    static const QString serialPort1;
+    static const QString serialPort3;
 };
 
 #endif // SYSTEMBASE_H

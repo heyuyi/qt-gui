@@ -94,7 +94,7 @@ void NumberDialog::on_confirm_clicked()
         value = x;
         emit outValue();
     } else {
-        QMessageBox::warning(this, "提示", "当前输入非法", QMessageBox::Yes);
+        QMessageBox::warning(this, QObject::tr("提示"), QObject::tr("当前输入非法"), QMessageBox::Yes);
         ui->text->setText(sbuf);
     }
 }

@@ -5,7 +5,7 @@
 #include <QTimer>
 
 Communication::Communication(QObject *parent) :
-    QObject(parent), port(new Posix_QextSerialPort(SystemBase::serialPort1)),
+    QObject(parent), port(new Posix_QextSerialPort(SystemBase::serialPort3)),
     array(), running(true)
 {
     port->setBaudRate(BAUD115200);

@@ -27,7 +27,7 @@ ProcessDialog::~ProcessDialog()
 bool ProcessDialog::init(void)
 {
     if(!comm->setup()) {
-        QMessageBox::warning((QWidget*)(this->parent()), "提示", "无法打开串口!", QMessageBox::Yes);
+        QMessageBox::warning((QWidget*)(this->parent()), QObject::tr("提示"), QObject::tr("无法打开串口!"), QMessageBox::Yes);
         return false;
     }
 
@@ -42,7 +42,7 @@ bool ProcessDialog::init(void)
             goto label;
         }
     }
-    QMessageBox::warning((QWidget*)(this->parent()), "提示", "请先进行参数配置!", QMessageBox::Yes);
+    QMessageBox::warning((QWidget*)(this->parent()), QObject::tr("提示"), QObject::tr("请先进行参数配置!"), QMessageBox::Yes);
     comm->stop();
     return false;
 

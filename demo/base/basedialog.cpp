@@ -11,8 +11,9 @@ BaseDialog::BaseDialog(QWidget *parent) :
     ui->setupUi(this);
     setFixedSize(SystemBase::dialogWidth, SystemBase::dialogHeight);
 
+    ui->titleBGLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/title_bg.jpg")));
     ui->dateLabel->setStyleSheet("color: white");
-    ui->dateLabel->setText(QDate::currentDate().toString("yyyy / MM / dd"));
+    ui->dateLabel->setText(QDate::currentDate().toString("yyyy/MM/dd"));
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(dateTimerSLOT()));
     timer->start(1000);
@@ -25,5 +26,5 @@ BaseDialog::~BaseDialog()
 
 void BaseDialog::dateTimerSLOT(void)
 {
-    ui->dateLabel->setText(QDate::currentDate().toString("yyyy / MM / dd"));
+    ui->dateLabel->setText(QDate::currentDate().toString("yyyy/MM/dd"));
 }
