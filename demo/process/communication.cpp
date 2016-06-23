@@ -3,10 +3,11 @@
 #include "base/paramdata.h"
 
 #include <QTimer>
+#include <QMessageBox>
 
 Communication::Communication(QObject *parent) :
     QObject(parent), port(new Posix_QextSerialPort(SystemBase::serialPort3)),
-    array(), running(true)
+    array()
 {
     port->setBaudRate(BAUD115200);
     port->setDataBits(DATA_8);
@@ -35,10 +36,9 @@ bool Communication::setup(void)
 void Communication::stop(void)
 {
     port->close();
-    running = false;
 }
 
-void Communication::sendData(unsigned char comm, void* data)
+void Communication::sendData(char comm, void* data)
 {
     char buf[50];
     int num = 2;
@@ -67,18 +67,33 @@ void Communication::sendData(unsigned char comm, void* data)
 
 void Communication::readSerialPortSLOT(void)
 {
-    array += port->readAll();
-//  char a[] = {0xff, 0x01, 0x02, 0xff, 0x01, 0x02, 0xff, 0x01, 0x02};
-//  array += a;
-    QList<QByteArray> arrays = array.split(0xff);
-    int n = arrays.size()-1;
-    for(int i = 1; i < n; ++i) {
-        int m = arrays[i].size();
-        if(m < 2)
-            continue;
-        if((arrays[i][1]+2) != m)
-            continue;
+    QByteArray a = port->readAll();
+    if(a.size() != 0) {
+//        QMessageBox::warning((QWidget*)(this->parent()), QObject::tr("警告"), QString::number(a.size()), QMessageBox::Yes);
+        array += a;
 
+        QList<QByteArray> arrays = array.split(0xff);
+        int n = arrays.size()-1;
+        for(int i = 1; i < n; ++i) {
+            int m = arrays[i].size();
+            if(m < 2)
+                continue;
+            if((((unsigned char)arrays[i][1])+2) != m)
+                continue;
+            emit received(arrays[i][0], arrays[i].right(arrays[i][1]));
+        }
+        int p = arrays[n].size();
+        if(p < 2)
+            array = QByteArray(1, 0xff) + arrays[n];
+        else {
+            int q = ((unsigned char)arrays[n][1]) + 2;
+            if(q > p)
+                array = QByteArray(1, 0xff) + arrays[n];
+            else if(q == p) {
+                emit received(arrays[n][0], arrays[n].right(arrays[n][1]));
+                array.clear();
+            } else
+                array.clear();
+        }
     }
-    array = QByteArray(1, 0xff) + arrays.last();
 }

@@ -13,9 +13,10 @@ public:
 
     bool setup(void);
     void stop(void);
-    void sendData(unsigned char comm, void* data);
+    void sendData(char comm, void* data);
 
 signals:
+    void received(char comm, QByteArray data);
 
 private slots:
     void readSerialPortSLOT(void);
@@ -23,7 +24,6 @@ private slots:
 private:
     Posix_QextSerialPort *port;
     QByteArray array;
-    volatile bool running;
 };
 
 #endif // COMMUNICATION_H

@@ -12,7 +12,7 @@ FileListDialog::FileListDialog(QWidget *parent,
 {
     ui->setupUi(this);
     connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
-    setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowMaximizeButtonHint);
     setFixedSize(this->width(), this->height());
 
     QDir dir(this->dir);
