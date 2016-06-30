@@ -23,12 +23,15 @@ private slots:
     void receDataSLOT(char comm, QByteArray data);
     void on_exitLabel_released();
 
+    void on_openButton_clicked();
+
 private:
     Ui::ProcessDialog *ui;
     Communication *comm;
     QTimer *timer;
     QPixmap icon1, icon2;
     volatile char cmd;
+    bool isOpen, toClose;
 };
 
 #endif // PROCESSDIALOG_H

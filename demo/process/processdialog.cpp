@@ -8,7 +8,7 @@ ProcessDialog::ProcessDialog(QWidget *parent) :
     ui(new Ui::ProcessDialog),
     icon1(QString::fromUtf8(":/process/stepicon1.png")),
     icon2(QString::fromUtf8(":/process/stepicon2.png")),
-    cmd(0xff)
+    cmd(0xff), isOpen(false), toClose(false)
 {
     ui->setupUi(this);
     comm = new Communication(this);
@@ -24,6 +24,7 @@ ProcessDialog::ProcessDialog(QWidget *parent) :
     ui->stepImage_1->setPixmap(icon2);
 
     ui->exitLabel->setVisible(false);
+    ui->openButton->setVisible(false);
 }
 
 ProcessDialog::~ProcessDialog()
@@ -68,20 +69,40 @@ void ProcessDialog::sendDelaySLOT(void)
         timer->stop();
         comm->stop();
         reject();
+    } else {
+        QMessageBox::warning(this, QObject::tr("警告"), QObject::tr("与下位机通讯失败!"), QMessageBox::Yes);
+        timer->stop();
     }
 }
 
 void ProcessDialog::receDataSLOT(char comm, QByteArray data)
 {
-    if(comm == 0x00 && cmd == 0x00) {
-        timer->stop();
+    timer->stop();
+    if(comm == 0x01 && cmd == 0x00) {
         ui->exitLabel->setVisible(true);
-        cmd = 0xff;
+        ui->openButton->setVisible(true);
+    } else if(comm == 0x03 && cmd == 0x02) {
+        isOpen = true;
+        ui->openButton->setText(QObject::tr("进仓"));
+    } else if(comm == 0x05 && cmd == 0x04) {
+        isOpen = false;
+        ui->openButton->setText(QObject::tr("出仓"));
     }
+    cmd = 0xff;
 }
 
 void ProcessDialog::on_exitLabel_released()
 {
     comm->stop();
     reject();
+}
+
+void ProcessDialog::on_openButton_clicked()
+{
+    if(isOpen)
+        cmd = 0x04;
+    else
+        cmd = 0x02;
+    comm->sendData(cmd, NULL);
+    timer->start(1000);
 }

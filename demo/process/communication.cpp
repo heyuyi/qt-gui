@@ -57,10 +57,10 @@ void Communication::sendData(char comm, void* data)
             buf[num++] = param->pR[i].pump;
             buf[num++] = param->pR[i].delay2;
         }
-    } else if(comm == 0x02) {
-        unsigned char *p = (unsigned char *)data;
-        buf[num++] = 1;
-        buf[num++] = *p;
+    } else if(comm == 0x02) {        
+        buf[num++] = 0;
+    } else if(comm == 0x04) {
+        buf[num++] = 0;
     }
     port->write(buf, num);
 }
