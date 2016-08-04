@@ -61,6 +61,8 @@ void Communication::sendData(char comm, void* data)
         buf[num++] = 0;
     } else if(comm == 0x04) {
         buf[num++] = 0;
+    } else if(comm == 0x10) {
+        buf[num++] = 0;
     }
     port->write(buf, num);
 }

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ReagentDialog</class>
+ <widget class="QDialog" name="ReagentDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="dateLabel">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>20</y>
+     <width>200</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>17</pointsize>
+    </font>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pictureLabel">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>100</y>
+     <width>318</width>
+     <height>315</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="changeLabel">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>160</y>
+     <width>140</width>
+     <height>56</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="finishLabel">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>220</y>
+     <width>140</width>
+     <height>56</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="confirmLabel">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>360</y>
+     <width>140</width>
+     <height>56</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ImageLabel</class>
+   <extends>QLabel</extends>
+   <header>component/imagelabel.h</header>
+   <slots>
+    <signal>released()</signal>
+    <signal>pressed()</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

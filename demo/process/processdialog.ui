@@ -16,8 +16,8 @@
   <widget class="ImageLabel" name="exitLabel">
    <property name="geometry">
     <rect>
-     <x>660</x>
-     <y>380</y>
+     <x>80</x>
+     <y>360</y>
      <width>64</width>
      <height>64</height>
     </rect>
@@ -25,15 +25,12 @@
    <property name="text">
     <string/>
    </property>
-   <property name="pixmap">
-    <pixmap resource="../../resource/resrc.qrc">:/process/exit.png</pixmap>
-   </property>
   </widget>
   <widget class="QLCDNumber" name="lcdNumber1">
    <property name="geometry">
     <rect>
      <x>315</x>
-     <y>10</y>
+     <y>20</y>
      <width>50</width>
      <height>40</height>
     </rect>
@@ -55,7 +52,7 @@
    <property name="geometry">
     <rect>
      <x>375</x>
-     <y>10</y>
+     <y>20</y>
      <width>50</width>
      <height>40</height>
     </rect>
@@ -77,7 +74,7 @@
    <property name="geometry">
     <rect>
      <x>435</x>
-     <y>10</y>
+     <y>20</y>
      <width>50</width>
      <height>40</height>
     </rect>
@@ -107,9 +104,6 @@
    <property name="text">
     <string/>
    </property>
-   <property name="pixmap">
-    <pixmap resource="../../resource/resrc.qrc">:/process/stepicon1.png</pixmap>
-   </property>
   </widget>
   <widget class="QLabel" name="stepImage_2">
    <property name="geometry">
@@ -122,9 +116,6 @@
    </property>
    <property name="text">
     <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="../../resource/resrc.qrc">:/process/stepicon1.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="stepImage_3">
@@ -139,9 +130,6 @@
    <property name="text">
     <string/>
    </property>
-   <property name="pixmap">
-    <pixmap resource="../../resource/resrc.qrc">:/process/stepicon1.png</pixmap>
-   </property>
   </widget>
   <widget class="QLabel" name="stepImage_4">
    <property name="geometry">
@@ -154,9 +142,6 @@
    </property>
    <property name="text">
     <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="../../resource/resrc.qrc">:/process/stepicon1.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="stepImage_5">
@@ -171,9 +156,6 @@
    <property name="text">
     <string/>
    </property>
-   <property name="pixmap">
-    <pixmap resource="../../resource/resrc.qrc">:/process/stepicon1.png</pixmap>
-   </property>
   </widget>
   <widget class="QLabel" name="stepImage_6">
    <property name="geometry">
@@ -186,9 +168,6 @@
    </property>
    <property name="text">
     <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="../../resource/resrc.qrc">:/process/stepicon1.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="stepImage_7">
@@ -203,9 +182,6 @@
    <property name="text">
     <string/>
    </property>
-   <property name="pixmap">
-    <pixmap resource="../../resource/resrc.qrc">:/process/stepicon1.png</pixmap>
-   </property>
   </widget>
   <widget class="QLabel" name="stepImage_8">
    <property name="geometry">
@@ -219,9 +195,6 @@
    <property name="text">
     <string/>
    </property>
-   <property name="pixmap">
-    <pixmap resource="../../resource/resrc.qrc">:/process/stepicon1.png</pixmap>
-   </property>
   </widget>
   <widget class="QLabel" name="stepImage_9">
    <property name="geometry">
@@ -234,9 +207,6 @@
    </property>
    <property name="text">
     <string/>
-   </property>
-   <property name="pixmap">
-    <pixmap resource="../../resource/resrc.qrc">:/process/stepicon1.png</pixmap>
    </property>
   </widget>
   <widget class="QLabel" name="stepLabel_1">
@@ -484,22 +454,87 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="openButton">
+  <widget class="QLabel" name="picture">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>320</x>
+     <y>200</y>
+     <width>170</width>
+     <height>197</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="outLabel">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>190</y>
+     <width>142</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="inLabel">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>250</y>
+     <width>142</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="startLabel">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>340</y>
+     <width>142</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="cancelLabel">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
      <y>400</y>
-     <width>90</width>
-     <height>30</height>
+     <width>142</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="dateLabel">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>20</y>
+     <width>200</width>
+     <height>40</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>17</pointsize>
     </font>
    </property>
-   <property name="text">
-    <string>出仓</string>
+   <property name="alignment">
+    <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
    </property>
   </widget>
  </widget>
@@ -510,11 +545,10 @@
    <header>component/imagelabel.h</header>
    <slots>
     <signal>released()</signal>
+    <signal>pressed()</signal>
    </slots>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../../resource/resrc.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

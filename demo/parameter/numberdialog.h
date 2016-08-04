@@ -16,7 +16,7 @@ public:
     ~NumberDialog();
 
     void setText(const QString &str);
-    int getValue(void);
+    unsigned char getValue(void);
 
 signals:
     void outValue();
@@ -49,7 +49,7 @@ private slots:
 private:
     Ui::NumberDialog *ui;
     QString sbuf;
-    unsigned char value;
+    unsigned int value;
 };
 
 #endif // NUMBERDIALOG_H

@@ -5,6 +5,11 @@ ImageLabel::ImageLabel(QWidget *parent) :
 {
 }
 
+void ImageLabel::mousePressEvent(QMouseEvent *e)
+{
+    emit pressed();
+}
+
 void ImageLabel::mouseReleaseEvent(QMouseEvent *e)
 {
     emit released();

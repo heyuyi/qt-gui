@@ -13,90 +13,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="saveButton">
-   <property name="geometry">
-    <rect>
-     <x>630</x>
-     <y>250</y>
-     <width>120</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="text">
-    <string>保存配置</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="openButton">
-   <property name="geometry">
-    <rect>
-     <x>630</x>
-     <y>205</y>
-     <width>120</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="text">
-    <string>打开配置</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="confirmButton">
-   <property name="geometry">
-    <rect>
-     <x>630</x>
-     <y>340</y>
-     <width>120</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="text">
-    <string>确定</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="saveAsButton">
-   <property name="geometry">
-    <rect>
-     <x>630</x>
-     <y>295</y>
-     <width>120</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
-   </property>
-   <property name="text">
-    <string>另存配置</string>
-   </property>
-  </widget>
   <widget class="QTreeView" name="paramView">
    <property name="geometry">
     <rect>
@@ -110,16 +26,11 @@
   <widget class="QGroupBox" name="reagentBox">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>260</x>
      <y>100</y>
-     <width>280</width>
-     <height>340</height>
+     <width>320</width>
+     <height>290</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
    </property>
    <property name="title">
     <string>试剂参数</string>
@@ -133,6 +44,11 @@
       <height>30</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>是否使用</string>
     </property>
@@ -140,11 +56,16 @@
    <widget class="QLabel" name="quantityLabel">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>80</y>
-      <width>110</width>
+      <width>100</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>加样量</string>
@@ -153,11 +74,16 @@
    <widget class="QLabel" name="speedLabel">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>120</y>
-      <width>110</width>
+      <width>100</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>加样速度</string>
@@ -166,11 +92,16 @@
    <widget class="QLabel" name="delay1Label">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>160</y>
-      <width>110</width>
+      <width>100</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>延时</string>
@@ -179,11 +110,16 @@
    <widget class="QLabel" name="pumpLabel">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>200</y>
-      <width>110</width>
+      <width>90</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>蠕动泵速度</string>
@@ -192,11 +128,16 @@
    <widget class="QLabel" name="delay2Label">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>240</y>
-      <width>110</width>
+      <width>100</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>延时</string>
@@ -205,9 +146,9 @@
    <widget class="InputEdit" name="quantityEdit">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>120</x>
       <y>80</y>
-      <width>100</width>
+      <width>90</width>
       <height>30</height>
      </rect>
     </property>
@@ -218,9 +159,9 @@
    <widget class="InputEdit" name="speedEdit">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>120</x>
       <y>120</y>
-      <width>100</width>
+      <width>90</width>
       <height>30</height>
      </rect>
     </property>
@@ -231,9 +172,9 @@
    <widget class="InputEdit" name="delay1Edit">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>120</x>
       <y>160</y>
-      <width>100</width>
+      <width>90</width>
       <height>30</height>
      </rect>
     </property>
@@ -244,9 +185,9 @@
    <widget class="InputEdit" name="pumpEdit">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>120</x>
       <y>200</y>
-      <width>100</width>
+      <width>90</width>
       <height>30</height>
      </rect>
     </property>
@@ -257,9 +198,9 @@
    <widget class="InputEdit" name="delay2Edit">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>120</x>
       <y>240</y>
-      <width>100</width>
+      <width>90</width>
       <height>30</height>
      </rect>
     </property>
@@ -267,20 +208,105 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="speedLabel2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>120</y>
+      <width>90</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>(0-10)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="quantityLabel2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>80</y>
+      <width>90</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>(0-10)mL</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="delay1Label2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>160</y>
+      <width>90</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>(0-200)秒</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="delay2Label2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>240</y>
+      <width>90</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>(0-200)秒</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="pumpLabel2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>200</y>
+      <width>90</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>(0-10)</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QGroupBox" name="sampleBox">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>260</x>
      <y>100</y>
-     <width>280</width>
-     <height>340</height>
+     <width>320</width>
+     <height>290</height>
     </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>12</pointsize>
-    </font>
    </property>
    <property name="title">
     <string>样本过滤</string>
@@ -288,11 +314,16 @@
    <widget class="QLabel" name="pumpSpeedLabel">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>80</y>
-      <width>110</width>
+      <width>100</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>蠕动泵速度</string>
@@ -301,11 +332,16 @@
    <widget class="QLabel" name="delayLabel">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>20</x>
       <y>120</y>
-      <width>110</width>
+      <width>100</width>
       <height>30</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>延时</string>
@@ -314,9 +350,9 @@
    <widget class="InputEdit" name="pumpSpeedEdit">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>120</x>
       <y>80</y>
-      <width>100</width>
+      <width>90</width>
       <height>30</height>
      </rect>
     </property>
@@ -327,9 +363,9 @@
    <widget class="InputEdit" name="delayEdit">
     <property name="geometry">
      <rect>
-      <x>150</x>
+      <x>120</x>
       <y>120</y>
-      <width>100</width>
+      <width>90</width>
       <height>30</height>
      </rect>
     </property>
@@ -337,30 +373,132 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
+   <widget class="QLabel" name="delayLabel2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>120</y>
+      <width>90</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>(0-200)秒</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="pumpSpeedLabel2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>80</y>
+      <width>90</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>(0-10)</string>
+    </property>
+   </widget>
   </widget>
-  <widget class="QPushButton" name="newButton">
+  <widget class="QLabel" name="dateLabel">
    <property name="geometry">
     <rect>
-     <x>630</x>
-     <y>160</y>
-     <width>120</width>
-     <height>30</height>
+     <x>610</x>
+     <y>20</y>
+     <width>200</width>
+     <height>40</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>17</pointsize>
     </font>
    </property>
-   <property name="focusPolicy">
-    <enum>Qt::NoFocus</enum>
+   <property name="alignment">
+    <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
    </property>
-   <property name="text">
-    <string>新建配置</string>
+  </widget>
+  <widget class="ImageLabel" name="newLabel">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>120</y>
+     <width>178</width>
+     <height>58</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="openLabel">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>185</y>
+     <width>178</width>
+     <height>58</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="saveLabel">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>250</y>
+     <width>178</width>
+     <height>58</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="saveAsLabel">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>315</y>
+     <width>178</width>
+     <height>58</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="cancelLabel">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>400</y>
+     <width>140</width>
+     <height>56</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="confirmLabel">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>400</y>
+     <width>140</width>
+     <height>56</height>
+    </rect>
    </property>
   </widget>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>ImageLabel</class>
+   <extends>QLabel</extends>
+   <header>component/imagelabel.h</header>
+   <slots>
+    <signal>released()</signal>
+    <signal>pressed()</signal>
+   </slots>
+  </customwidget>
   <customwidget>
    <class>InputEdit</class>
    <extends>QLineEdit</extends>

@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp \
-    base/basedialog.cpp \
     base/paramdata.cpp \
     base/systembase.cpp \
     component/imagelabel.cpp \
@@ -26,10 +25,11 @@ SOURCES += main.cpp \
     maindialog.cpp \
     qextserialport/posix_qextserialport.cpp \
     qextserialport/qextserialbase.cpp \
-    process/communication.cpp
+    process/communication.cpp \
+    base/timesetdialog.cpp \
+    process/reagentdialog.cpp
 
 HEADERS  += \
-    base/basedialog.h \
     base/paramdata.h \
     base/systembase.h \
     component/imagelabel.h \
@@ -42,19 +42,24 @@ HEADERS  += \
     maindialog.h \
     qextserialport/posix_qextserialport.h \
     qextserialport/qextserialbase.h \
-    process/communication.h
+    process/communication.h \
+    base/timesetdialog.h \
+    process/reagentdialog.h
 
 FORMS    += \
     maindialog.ui \
-    base/basedialog.ui \
     parameter/filelistdialog.ui \
     parameter/keyboarddialog.ui \
     parameter/numberdialog.ui \
     parameter/paramdialog.ui \
-    process/processdialog.ui
+    process/processdialog.ui \
+    base/timesetdialog.ui \
+    process/reagentdialog.ui
 
-RESOURCES += \
-    ../resource/resrc.qrc
+RESOURCES +=
 
 OTHER_FILES += \
-    ../readme.txt
+    ../readme.txt \
+    ../resource/process/exit.png \
+    ../resource/process/stepicon1.png \
+    ../resource/process/stepicon2.png

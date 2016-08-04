@@ -1,3 +1,4 @@
+#include "base/systembase.h"
 #include "paramdialog.h"
 #include "ui_paramdialog.h"
 #include "filelistdialog.h"
@@ -9,17 +10,34 @@
 #include <QMessageBox>
 
 ParamDialog::ParamDialog(QWidget *parent) :
-    BaseDialog(parent),
+    QDialog(parent, Qt::FramelessWindowHint),
     ui(new Ui::ParamDialog),
     nDialog(new NumberDialog(this)), param(NULL),
     name(), treeItem(0), editItem(0), isChanged(false)
 {
     ui->setupUi(this);
-    nDialog->move(parent->x()+570, parent->y()+130);
+    setFixedSize(SystemBase::dialogWidth, SystemBase::dialogHeight);
+    QPalette pale;
+    pale.setBrush(QPalette::Background, QBrush(QPixmap(SystemBase::path + QString("/../resource/base/background.jpg"))));
+    setPalette(pale);
+
+    nDialog->move(parent->x()+580, parent->y()+120);
     connect(nDialog, SIGNAL(outValue()), this, SLOT(nDialogOutValueSLOT()));
 
-    QIcon icon1(":/param/treeView1.png");
-    QIcon icon2(":/param/treeView2.png");
+    ui->newLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/new_up.jpg")));
+    ui->openLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/open_up.jpg")));
+    ui->saveLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/save_up.jpg")));
+    ui->saveAsLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/saveas_up.jpg")));
+    ui->confirmLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/confirm_up.jpg")));
+    ui->cancelLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/cancel_up.jpg")));
+
+    ui->dateLabel->setText(QDate::currentDate().toString("yyyy/MM/dd"));
+    QTimer *timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(dateTimerSLOT()));
+    timer->start(1000);
+
+    QIcon icon1(QPixmap(SystemBase::path + "/../resource/parameter/treeView1.png"));
+    QIcon icon2(QPixmap(SystemBase::path + "/../resource/parameter/treeView2.png"));
     treeModel = new QStandardItemModel(ui->paramView);
     QStandardItem *item1 = new QStandardItem(icon1, QObject::tr("样本过滤设置"));
     treeModel->appendRow(item1);
@@ -31,6 +49,7 @@ ParamDialog::ParamDialog(QWidget *parent) :
     item2->setFont(font);
     for(int i = 0; i < SystemBase::reagentNum; ++i) {
         QStandardItem *item = new QStandardItem(icon2, QObject::tr("试剂")+QString::number(i+1));
+        item->setFont(font);
         item2->appendRow(item);
     }
     ui->paramView->setModel(treeModel);
@@ -52,8 +71,8 @@ ParamDialog::ParamDialog(QWidget *parent) :
         file.close();
     }
     ui->paramView->setEnabled(false);
-    ui->saveButton->setEnabled(false);
-    ui->saveAsButton->setEnabled(false);
+    ui->saveLabel->setEnabled(false);
+    ui->saveAsLabel->setEnabled(false);
 label:
     treeModel->setHorizontalHeaderLabels(QStringList(name));
     displayUpdate();
@@ -64,6 +83,11 @@ ParamDialog::~ParamDialog()
     if(param != NULL)
         delete param;
     delete ui;
+}
+
+void ParamDialog::dateTimerSLOT(void)
+{
+    ui->dateLabel->setText(QDate::currentDate().toString("yyyy/MM/dd"));
 }
 
 void ParamDialog::saveCheck(void)
@@ -175,81 +199,6 @@ void ParamDialog::on_paramView_clicked(const QModelIndex &index)
     displayUpdate();
 }
 
-void ParamDialog::on_newButton_clicked()
-{
-    saveCheck();
-    KeyboardDialog kd(this);
-    if(kd.exec() == QDialog::Accepted) {
-        if(param != NULL)
-            delete param;
-
-        name = kd.getText();
-        param = new ParamData(SystemBase::reagentNum);
-        treeModel->setHorizontalHeaderLabels(QStringList(name));
-        displayUpdate();
-        isChanged = true;
-
-        ui->paramView->setEnabled(true);
-        ui->saveButton->setEnabled(true);
-        ui->saveAsButton->setEnabled(true);
-    }
-}
-
-void ParamDialog::on_openButton_clicked()
-{
-    saveCheck();
-    FileListDialog fd(this, SystemBase::path, QString(".") + SystemBase::postfix);
-    if(fd.exec() == QDialog::Accepted) {
-        name = fd.selectedFile();
-        QFile file(SystemBase::path + name + QString(".") + SystemBase::postfix);
-        if(param) {
-            param->readParam(SystemBase::reagentNum, file);
-        } else {
-            param = new ParamData(SystemBase::reagentNum, file);
-        }
-        treeModel->setHorizontalHeaderLabels(QStringList(name));
-        displayUpdate();
-
-        ui->paramView->setEnabled(true);
-        ui->saveButton->setEnabled(true);
-        ui->saveAsButton->setEnabled(true);
-    }
-}
-
-void ParamDialog::on_saveButton_clicked()
-{
-    if(param != NULL && isChanged) {
-        QFile file(SystemBase::path + name + QString(".") + SystemBase::postfix);
-        param->writeParam(SystemBase::reagentNum, file);
-        isChanged = false;
-    }
-}
-
-void ParamDialog::on_saveAsButton_clicked()
-{
-    KeyboardDialog kd(this);
-    if(kd.exec() == QDialog::Accepted) {
-        name = kd.getText();
-        QFile file(SystemBase::path + name + QString(".") + SystemBase::postfix);
-        param->writeParam(SystemBase::reagentNum, file);
-        treeModel->setHorizontalHeaderLabels(QStringList(name));
-        displayUpdate();
-        isChanged = false;
-    }
-}
-
-void ParamDialog::on_confirmButton_clicked()
-{
-    saveCheck();
-    QFile file(SystemBase::path + QString("/") + SystemBase::postfix);
-    if(file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
-        QTextStream out(&file);
-        out << name << endl;
-        file.close();
-    }
-    accept();
-}
-
 void ParamDialog::on_enableCheckBox_clicked()
 {
     param->pR[treeItem-1].enable = ui->enableCheckBox->isChecked();
@@ -346,4 +295,119 @@ void ParamDialog::on_delay2Edit_released()
             nDialog->show();
         editItem = 7;
     }
+}
+
+void ParamDialog::on_newLabel_pressed()
+{
+    ui->newLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/new_down.jpg")));
+}
+
+void ParamDialog::on_newLabel_released()
+{
+    saveCheck();
+    KeyboardDialog kd(this);
+    if(kd.exec() == QDialog::Accepted) {
+        if(param != NULL)
+            delete param;
+
+        name = kd.getText();
+        param = new ParamData(SystemBase::reagentNum);
+        treeModel->setHorizontalHeaderLabels(QStringList(name));
+        displayUpdate();
+        isChanged = true;
+
+        ui->paramView->setEnabled(true);
+        ui->saveLabel->setEnabled(true);
+        ui->saveAsLabel->setEnabled(true);
+    }
+    ui->newLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/new_up.jpg")));
+}
+
+void ParamDialog::on_openLabel_pressed()
+{
+    ui->openLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/open_down.jpg")));
+}
+
+void ParamDialog::on_openLabel_released()
+{
+    saveCheck();
+    FileListDialog fd(this, SystemBase::path, QString(".") + SystemBase::postfix);
+    if(fd.exec() == QDialog::Accepted) {
+        name = fd.selectedFile();
+        QFile file(SystemBase::path + name + QString(".") + SystemBase::postfix);
+        if(param) {
+            param->readParam(SystemBase::reagentNum, file);
+        } else {
+            param = new ParamData(SystemBase::reagentNum, file);
+        }
+        treeModel->setHorizontalHeaderLabels(QStringList(name));
+        displayUpdate();
+
+        ui->paramView->setEnabled(true);
+        ui->saveLabel->setEnabled(true);
+        ui->saveAsLabel->setEnabled(true);
+    }
+    ui->openLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/open_up.jpg")));
+}
+
+void ParamDialog::on_saveLabel_pressed()
+{
+    ui->saveLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/save_down.jpg")));
+}
+
+void ParamDialog::on_saveLabel_released()
+{
+    if(param != NULL && isChanged) {
+        QFile file(SystemBase::path + name + QString(".") + SystemBase::postfix);
+        param->writeParam(SystemBase::reagentNum, file);
+        isChanged = false;
+    }
+    ui->saveLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/save_up.jpg")));
+}
+
+void ParamDialog::on_saveAsLabel_pressed()
+{
+    ui->saveAsLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/saveas_down.jpg")));
+}
+
+void ParamDialog::on_saveAsLabel_released()
+{
+    KeyboardDialog kd(this);
+    if(kd.exec() == QDialog::Accepted) {
+        name = kd.getText();
+        QFile file(SystemBase::path + name + QString(".") + SystemBase::postfix);
+        param->writeParam(SystemBase::reagentNum, file);
+        treeModel->setHorizontalHeaderLabels(QStringList(name));
+        displayUpdate();
+        isChanged = false;
+    }
+    ui->saveAsLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/saveas_up.jpg")));
+}
+
+void ParamDialog::on_confirmLabel_pressed()
+{
+    ui->confirmLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/confirm_down.jpg")));
+}
+
+void ParamDialog::on_confirmLabel_released()
+{
+    saveCheck();
+    QFile file(SystemBase::path + QString("/") + SystemBase::postfix);
+    if(file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
+        QTextStream out(&file);
+        out << name << endl;
+        file.close();
+    }
+    accept();
+//    ui->confirmLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/confirm_up.jpg")));
+}
+
+void ParamDialog::on_cancelLabel_pressed()
+{
+    ui->cancelLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/cancel_down.jpg")));
+}
+
+void ParamDialog::on_cancelLabel_released()
+{
+    ui->cancelLabel->setPixmap(QPixmap(SystemBase::path + QString("/../resource/parameter/cancel_up.jpg")));
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TimeSetDialog</class>
+ <widget class="QDialog" name="TimeSetDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>480</width>
+    <height>245</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QCalendarWidget" name="calendarWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>480</width>
+     <height>180</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="confirmLabel">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>185</y>
+     <width>140</width>
+     <height>56</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="ImageLabel" name="cancelLabel">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>185</y>
+     <width>140</width>
+     <height>56</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ImageLabel</class>
+   <extends>QLabel</extends>
+   <header>component/imagelabel.h</header>
+   <slots>
+    <signal>released()</signal>
+    <signal>pressed()</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,17 +1,17 @@
 #ifndef PARAMDIALOG_H
 #define PARAMDIALOG_H
 
-#include "base/basedialog.h"
 #include "base/paramdata.h"
 #include "numberdialog.h"
 
+#include <QDialog>
 #include <QStandardItemModel>
 
 namespace Ui {
 class ParamDialog;
 }
 
-class ParamDialog : public BaseDialog
+class ParamDialog : public QDialog
 {
     Q_OBJECT
 
@@ -24,19 +24,11 @@ private:
     void displayUpdate(void);
 
 private slots:
+    void dateTimerSLOT(void);
+
     void nDialogOutValueSLOT();
 
     void on_paramView_clicked(const QModelIndex &index);
-
-    void on_newButton_clicked();
-
-    void on_openButton_clicked();
-
-    void on_saveButton_clicked();
-
-    void on_saveAsButton_clicked();
-
-    void on_confirmButton_clicked();
 
     void on_enableCheckBox_clicked();
 
@@ -53,6 +45,30 @@ private slots:
     void on_pumpEdit_released();
 
     void on_delay2Edit_released();
+
+    void on_newLabel_pressed();
+
+    void on_newLabel_released();
+
+    void on_openLabel_pressed();
+
+    void on_openLabel_released();
+
+    void on_saveLabel_pressed();
+
+    void on_saveLabel_released();
+
+    void on_saveAsLabel_pressed();
+
+    void on_saveAsLabel_released();
+
+    void on_confirmLabel_pressed();
+
+    void on_confirmLabel_released();
+
+    void on_cancelLabel_pressed();
+
+    void on_cancelLabel_released();
 
 private:
     Ui::ParamDialog *ui;

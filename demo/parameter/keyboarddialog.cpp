@@ -1,5 +1,6 @@
 #include "keyboarddialog.h"
 #include "ui_keyboarddialog.h"
+#include "base/systembase.h"
 
 #include <QMessageBox>
 
@@ -11,6 +12,7 @@ KeyboardDialog::KeyboardDialog(QWidget *parent) :
     setFixedSize(this->width(), this->height());
     move(parent->x()+10, parent->y()+100);
     connect(ui->cancel, SIGNAL(clicked()), this, SLOT(reject()));
+    ui->button_back->setIcon(QPixmap(SystemBase::path + "/../resource/parameter/back.png"));
 }
 
 KeyboardDialog::~KeyboardDialog()

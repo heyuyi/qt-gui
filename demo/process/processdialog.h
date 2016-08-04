@@ -1,14 +1,15 @@
 #ifndef PROCESSDIALOG_H
 #define PROCESSDIALOG_H
 
-#include "base/basedialog.h"
 #include "communication.h"
+
+#include <QDialog>
 
 namespace Ui {
 class ProcessDialog;
 }
 
-class ProcessDialog : public BaseDialog
+class ProcessDialog : public QDialog
 {
     Q_OBJECT
 
@@ -19,19 +20,35 @@ public:
     void init(void);
 
 private slots:
+    void dateTimerSLOT(void);
+
     void sendDelaySLOT(void);
+
     void receDataSLOT(char comm, QByteArray data);
+
     void on_exitLabel_released();
 
-    void on_openButton_clicked();
+    void on_outLabel_pressed();
+
+    void on_outLabel_released();
+
+    void on_inLabel_pressed();
+
+    void on_inLabel_released();
+
+    void on_startLabel_pressed();
+
+    void on_startLabel_released();
+
+    void on_cancelLabel_pressed();
+
+    void on_cancelLabel_released();
 
 private:
     Ui::ProcessDialog *ui;
     Communication *comm;
-    QTimer *timer;
-    QPixmap icon1, icon2;
+    QTimer *sendDeleyTimer;
     volatile char cmd;
-    bool isOpen, toClose;
 };
 
 #endif // PROCESSDIALOG_H

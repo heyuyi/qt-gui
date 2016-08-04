@@ -856,8 +856,8 @@
        <string/>
       </property>
       <property name="icon">
-       <iconset resource="../../resource/resrc.qrc">
-        <normaloff>:/param/back.png</normaloff>:/param/back.png</iconset>
+       <iconset>
+        <normaloff>../../resource/parameter/back.png</normaloff>../../resource/parameter/back.png</iconset>
       </property>
      </widget>
     </item>
@@ -915,8 +915,6 @@
    </property>
   </widget>
  </widget>
- <resources>
-  <include location="../../resource/resrc.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

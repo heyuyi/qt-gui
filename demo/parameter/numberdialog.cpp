@@ -1,5 +1,6 @@
 #include "numberdialog.h"
 #include "ui_numberdialog.h"
+#include "base/systembase.h"
 
 #include <QMessageBox>
 
@@ -11,6 +12,7 @@ NumberDialog::NumberDialog(QWidget *parent) :
     ui->setupUi(this);
     setModal(false);
     setFixedSize(this->width(), this->height());
+    ui->button_back->setIcon(QPixmap(SystemBase::path + "/../resource/parameter/back.png"));
 }
 
 NumberDialog::~NumberDialog()
@@ -24,7 +26,7 @@ void NumberDialog::setText(const QString &str)
     ui->text->setText(str);
 }
 
-int NumberDialog::getValue()
+unsigned char NumberDialog::getValue()
 {
     return value;
 }

@@ -10,10 +10,12 @@ public:
     explicit ImageLabel(QWidget *parent = 0);
 
 signals:
+    void pressed();
     void released();
 public slots:
 
 protected:
+    void mousePressEvent(QMouseEvent *e);
     void mouseReleaseEvent(QMouseEvent *e);
 };
 
